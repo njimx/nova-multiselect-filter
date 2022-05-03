@@ -2,13 +2,13 @@
     <div tabindex="-1" class="flex h-auto">
         <div v-if="selected.length === 0" class="h-8 pt-1 leading-normal">&mdash;</div>
         <ul v-else ref="selected" class="list-reset flex flex-wrap text-sm -ml-2 pb-1">
-            <li v-for="option, index in selected" @click="remove(index)" :class="option.value" class="bg-primary text-white rounded -ml-0 mt-1 mr-1 px-2 py-1 hover:bg-primary-dark">
+            <li v-for="option, index in selected" :key="index" @click="remove(index)" :class="option.value" class="bg-primary text-white rounded -ml-0 mt-1 mr-1 px-2 py-1 hover:bg-primary-dark">
                 {{ option.name }}
             </li>
         </ul>
 
         <ul v-if="showDropdown && availableOptions.length" class="list-reset absolute top-auto w-5/6 -ml-6 py-1 border border-60 rounded-lg bg-30">
-            <li v-for="option in availableOptions" @click="select(option)" class="px-3 py-1 hover:text-white hover:bg-primary-dark">
+            <li v-for="option, index in availableOptions" :key="index" @click="select(option)" class="px-3 py-1 hover:text-white hover:bg-primary-dark">
                 {{ option.name }}
             </li>
         </ul>
