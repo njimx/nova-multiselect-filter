@@ -1,15 +1,15 @@
 <template>
     <div tabindex="-1" class="flex h-auto">
         <div v-if="selected.length === 0" class="h-8 pt-1 leading-normal">&mdash;</div>
-        <ul v-else ref="selected" class="list-reset flex flex-wrap text-sm -ml-2 pb-1">
-            <li v-for="option, index in selected" :key="index" @click="remove(index)" :class="option.value" class="bg-primary text-white rounded -ml-0 mt-1 mr-1 px-2 py-1 hover:bg-primary-dark">
-                {{ option.name }}
+        <ul v-else ref="selected" class="list-reset flex flex-wrap text-sm -ml-2 pb-1 cursor-pointer">
+            <li v-for="option, index in selected" :key="index" @click="remove(index)" :class="option.value" class="bg-gray-100 rounded -ml-0 mt-1 mr-1 px-2 py-1 hover:bg-gray-200">
+                {{ option.label }}
             </li>
         </ul>
 
-        <ul v-if="showDropdown && availableOptions.length" class="list-reset absolute top-auto w-5/6 -ml-6 py-1 border border-60 rounded-lg bg-30">
-            <li v-for="option, index in availableOptions" :key="index" @click="select(option)" class="px-3 py-1 hover:text-white hover:bg-primary-dark">
-                {{ option.name }}
+        <ul v-if="showDropdown && availableOptions.length" class="list-reset absolute w-5/6 py-1 border rounded-lg cursor-pointer bg-white z-10">
+            <li v-for="option, index in availableOptions" :key="index" @click="select(option)" class="px-3 py-1 hover:bg-gray-100">
+                {{ option.label }}
             </li>
         </ul>
 
@@ -29,7 +29,7 @@
         },
         data: () => ({
             showDropdown: false,
-            selected: [],
+            selected: []
         }),
         computed: {
             availableOptions() {
@@ -58,11 +58,13 @@
             this.selected = this.options.filter(option => {
                 return this.value.includes(option.value);
             });
-            console.log(this);
         },
         watch: {
-            selected: function() {
-                this.$emit('change', this.selected.map(e => e.value));
+            selected:{
+                handler:  function() {
+                    this.$emit('change', this.selected.map(e => e.value));
+                },
+                deep: true
             }
         }
     }

@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <h3 class="text-sm uppercase tracking-wide text-80 bg-30 p-3">
+    <div class="pt-2 pb-3">
+        <h3 class="px-2 text-xs uppercase font-bold tracking-wide">
             {{ filter.name }}
         </h3>
 
-        <div class="p-2">
+        <div class="mt-1 px-3">
             <select-multiple
                 :dusk="filter.name + '-filter-select'"
                 class="block w-full form-control-sm form-select"
