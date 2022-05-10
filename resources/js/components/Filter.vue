@@ -7,7 +7,7 @@
         <div class="mt-1 px-3">
             <select-multiple
                 :dusk="filter.name + '-filter-select'"
-                class="block w-full form-control-sm form-select"
+                class="block w-full form-control-sm form-select border border-gray-300 cursor-pointer relative"
                 :options="filter.options"
                 :value="value"
                 @change="handleChange"
